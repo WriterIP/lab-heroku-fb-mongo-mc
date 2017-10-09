@@ -29,6 +29,7 @@ public class HelloController {
         }
         String [] fields = { "id", "email",  "first_name", "last_name" };
         User userProfile = facebook.fetchObject("me", User.class, fields);
+        System.out.println(userProfile.getEmail()+userProfile.getFirstName()+userProfile.getLastName());
         model.addAttribute("facebookProfile", userProfile);
 //        PagedList<Post> feed = facebook.feedOperations().getFeed();
 //        model.addAttribute("feed", feed);
