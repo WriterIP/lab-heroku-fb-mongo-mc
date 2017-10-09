@@ -28,8 +28,8 @@ public class HelloController {
         }
 
         model.addAttribute("facebookProfile", facebook.userOperations().getUserProfile());
-        PagedList<Post> feed = facebook.feedOperations().getFeed();
-        model.addAttribute("feed", feed);
+//        PagedList<Post> feed = facebook.feedOperations().getFeed();
+//        model.addAttribute("feed", feed);
         return "hello";
     }
 
