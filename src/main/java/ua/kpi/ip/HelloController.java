@@ -31,7 +31,7 @@ public class HelloController {
         model.addAttribute("first_name", userProfile.getFirstName());
         model.addAttribute("last_name", userProfile.getLastName());
 
-        
+
         return "info";
     }
 
