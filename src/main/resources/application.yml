@@ -3,3 +3,7 @@ spring:
     facebook:
       appId: 144441242832846
       appSecret: c061dfe0684a1776ab9afb2b298d3352
+
+  data:
+    mongodb:
+      uri: mongodb://heroku_x1nr1tf8:e4gdeka0mbtordo7e5c5mtb0rq@ds115035.mlab.com:15035/heroku_x1nr1tf8
