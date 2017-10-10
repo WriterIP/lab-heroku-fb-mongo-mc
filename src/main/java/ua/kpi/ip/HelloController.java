@@ -27,10 +27,12 @@ public class HelloController {
         if (connectionRepository.findPrimaryConnection(Facebook.class) == null) {
             return "redirect:/connect/facebook";
         }
-        String [] fields = { "id", "email",  "first_name", "last_name" };
+        String [] fields = { "id",   "first_name", "last_name" };
         User userProfile = facebook.fetchObject("me", User.class, fields);
         System.out.println(userProfile.getEmail()+userProfile.getFirstName()+userProfile.getLastName());
-        model.addAttribute("facebookProfile", userProfile);
+        model.addAttribute("first_name", userProfile.getFirstName());
+        model.addAttribute("last_name", userProfile.getLastName());
+
 //        PagedList<Post> feed = facebook.feedOperations().getFeed();
 //        model.addAttribute("feed", feed);
         return "hello";
