@@ -2,8 +2,6 @@ package ua.kpi.ip;
 
 import org.springframework.social.connect.ConnectionRepository;
 import org.springframework.social.facebook.api.Facebook;
-import org.springframework.social.facebook.api.PagedList;
-import org.springframework.social.facebook.api.Post;
 import org.springframework.social.facebook.api.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,9 +25,9 @@ public class HelloController {
         if (connectionRepository.findPrimaryConnection(Facebook.class) == null) {
             return "redirect:/connect/facebook";
         }
-        String [] fields = { "id",   "first_name", "last_name" };
+        String[] fields = {"id", "email", "first_name", "last_name"};
         User userProfile = facebook.fetchObject("me", User.class, fields);
-        System.out.println(userProfile.getEmail()+userProfile.getFirstName()+userProfile.getLastName());
+        System.out.println(userProfile.getEmail() + userProfile.getFirstName() + userProfile.getLastName());
         model.addAttribute("first_name", userProfile.getFirstName());
         model.addAttribute("last_name", userProfile.getLastName());
 
