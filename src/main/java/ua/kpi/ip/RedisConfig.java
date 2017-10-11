@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.repository.configuration.RedisRepositoryConfigurationExtension;
 import org.springframework.data.repository.config.RepositoryConfigurationSource;
 
 @Configuration
@@ -23,6 +24,7 @@ public class RedisConfig {
         conf.setHostName(host);
         conf.setPort(port);
         conf.setUsePool(true);
+
         return conf;
     }
 
