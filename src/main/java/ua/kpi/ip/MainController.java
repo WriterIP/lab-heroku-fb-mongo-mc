@@ -1,5 +1,7 @@
 package ua.kpi.ip;
 
+import org.springframework.data.redis.core.HashOperations;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.social.connect.ConnectionRepository;
 import org.springframework.social.facebook.api.Facebook;
 import org.springframework.social.facebook.api.User;
@@ -15,11 +17,15 @@ public class MainController {
     private Facebook facebook;
     private ConnectionRepository connectionRepository;
     private HumanRepository humanRepository;
+    private RedisTemplate<String, String> redisTemplate;
+    private HashOperations hashOps;
 
-    public MainController(Facebook facebook, ConnectionRepository connectionRepository, HumanRepository humanRepository) {
+    public MainController(Facebook facebook, ConnectionRepository connectionRepository, HumanRepository humanRepository,RedisTemplate<String,String> redisTemplate) {
         this.facebook = facebook;
         this.connectionRepository = connectionRepository;
         this.humanRepository = humanRepository;
+        this.redisTemplate = redisTemplate;
+        this.hashOps = redisTemplate.opsForHash();
     }
 
     @GetMapping
@@ -39,7 +45,6 @@ public class MainController {
             System.out.println("saved him");
         } else
             System.out.println("already in DB");
-
         return "info";
     }
 
