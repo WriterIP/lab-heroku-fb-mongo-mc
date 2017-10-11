@@ -10,16 +10,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/")
-public class HelloController {
+public class MainController {
 
     private Facebook facebook;
     private ConnectionRepository connectionRepository;
-    private CustomerRepository customerRepository;
+    private HumanRepository humanRepository;
 
-    public HelloController(Facebook facebook, ConnectionRepository connectionRepository, CustomerRepository customerRepository) {
+    public MainController(Facebook facebook, ConnectionRepository connectionRepository, HumanRepository humanRepository) {
         this.facebook = facebook;
         this.connectionRepository = connectionRepository;
-        this.customerRepository = customerRepository;
+        this.humanRepository = humanRepository;
     }
 
     @GetMapping
@@ -30,13 +30,12 @@ public class HelloController {
         String[] fields = {"id", "email", "first_name", "last_name"};
         User userProfile = facebook.fetchObject("me", User.class, fields);
 
-
         System.out.println(userProfile.getEmail() + userProfile.getFirstName() + userProfile.getLastName());
         model.addAttribute("first_name", userProfile.getFirstName());
         model.addAttribute("last_name", userProfile.getLastName());
 
-        if (customerRepository.findByFbId(userProfile.getId()) == null) {
-            customerRepository.save(new Customer(userProfile.getFirstName(), userProfile.getLastName(), userProfile.getId()));
+        if (humanRepository.findByFbId(userProfile.getId()) == null) {
+            humanRepository.save(new Human(userProfile.getFirstName(), userProfile.getLastName(), userProfile.getId()));
             System.out.println("saved him");
         } else
             System.out.println("already in DB");

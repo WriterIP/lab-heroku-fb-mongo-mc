@@ -2,7 +2,7 @@ package ua.kpi.ip;
 
 import org.springframework.data.annotation.Id;
 
-public class Customer {
+public class Human {
 
     @Id
     private String id;
@@ -11,11 +11,11 @@ public class Customer {
     private String lastName;
     private String fbId;
 
-    public Customer() {
+    public Human() {
     }
 
 
-    public Customer(String firstName, String lastName, String fbId) {
+    public Human(String firstName, String lastName, String fbId) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.fbId = fbId;
@@ -25,7 +25,7 @@ public class Customer {
     @Override
     public String toString() {
         return String.format(
-                "Customer[id=%s, firstName='%s', lastName='%s']",
+                "Human[id=%s, firstName='%s', lastName='%s']",
                 id, firstName, lastName);
     }
 
