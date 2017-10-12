@@ -7,7 +7,7 @@ spring:
   data:
     mongodb:
       uri: mongodb://heroku_x1nr1tf8:e4gdeka0mbtordo7e5c5mtb0rq@ds115035.mlab.com:15035/heroku_x1nr1tf8
-    redis:
-      uri: redis://h:pd4f80b26729c18599aea4a7eefb5e3aba407c08d2b7ece3e9b18c42be97b84b2@ec2-34-235-35-224.compute-1.amazonaws.com:14449
-      host: pd4f80b26729c18599aea4a7eefb5e3aba407c08d2b7ece3e9b18c42be97b84b2@ec2-34-235-35-224.compute-1.amazonaws.com
-      port: 14449
+    memcached:
+      username: memcachedcloud
+      password: password
+      servers: localhost:11211

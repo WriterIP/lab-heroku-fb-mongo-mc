@@ -10,6 +10,9 @@ sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
+    maven{
+        url 'http://files.couchbase.com/maven2/'
+    }
 }
 
 
@@ -30,6 +33,5 @@ dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: '1.5.7.RELEASE'
     compile group: 'org.springframework.social', name: 'spring-social-facebook', version: '2.0.3.RELEASE'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-mongodb', version: '1.5.7.RELEASE'
-    compile group: 'org.springframework.data', name: 'spring-data-redis', version: '1.7.1.RELEASE'
-    compile group: 'redis.clients',name:'jedis',version: '2.5.1'
+    compile group: 'spy',name:'spymemcached',version:'2.8.9'
 }
