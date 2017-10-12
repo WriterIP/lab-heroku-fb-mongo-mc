@@ -8,6 +8,6 @@ spring:
     mongodb:
       uri: mongodb://heroku_x1nr1tf8:e4gdeka0mbtordo7e5c5mtb0rq@ds115035.mlab.com:15035/heroku_x1nr1tf8
     memcached:
-      username: memcachedcloud
-      password: password
-      servers: localhost:11211
+      username: memcached-app78620446
+      password: fa5hmaJ2yxw6Vi5e
+      servers: memcached-19846.c10.us-east-1-2.ec2.cloud.redislabs.com:19846
