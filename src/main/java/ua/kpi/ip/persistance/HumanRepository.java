@@ -1,8 +1,9 @@
-package ua.kpi.ip;
+package ua.kpi.ip.persistance;
 
 import java.util.List;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
+import ua.kpi.ip.persistance.model.Human;
 
 public interface HumanRepository extends MongoRepository<Human, String> {
 

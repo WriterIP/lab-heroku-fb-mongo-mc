@@ -8,14 +8,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import ua.kpi.ip.persistance.model.Human;
+import ua.kpi.ip.persistance.HumanRepository;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 
 @Controller
 @RequestMapping("/")
 public class MainController {
 
-    MemcachedClient mc;
+    private static final int EXP_INTERVAL = 24 * 60 * 60;
+    private MemcachedClient mc;
     private Facebook facebook;
     private ConnectionRepository connectionRepository;
     private HumanRepository humanRepository;
@@ -25,13 +29,11 @@ public class MainController {
         this.facebook = facebook;
         this.connectionRepository = connectionRepository;
         this.humanRepository = humanRepository;
-//        this.redisTemplate = redisTemplate;
         this.mc = mc;
-//        this.hashOps = redisTemplate.opsForHash();
     }
 
     @GetMapping
-    public String helloFacebook(Model model) {
+    public String helloFacebook(Model model, HttpServletRequest request) {
         if (connectionRepository.findPrimaryConnection(Facebook.class) == null) {
             return "redirect:/connect/facebook";
         }
@@ -46,7 +48,13 @@ public class MainController {
             System.out.println("saved him");
         } else
             System.out.println("already in DB");
-        mc.set(h.getFirstName() + " " + h.getLastName(), 3600, new Date().toString());
+
+        model.addAttribute("last_date",mc.get(h.getFbId()+"_dt"));
+        model.addAttribute("last_client",mc.get(h.getFbId()+"_ip"));
+
+        mc.set(h.getFbId()+"_dt", 3600, new Date().toString());
+        mc.set(h.getFbId()+"_ip", 3600, request.getRemoteAddr());
+
         return "info";
     }
 

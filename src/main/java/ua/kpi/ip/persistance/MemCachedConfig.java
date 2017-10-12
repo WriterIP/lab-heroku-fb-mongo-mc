@@ -1,4 +1,4 @@
-package ua.kpi.ip;
+package ua.kpi.ip.persistance;
 
 import net.spy.memcached.AddrUtil;
 import net.spy.memcached.ConnectionFactoryBuilder;
@@ -16,16 +16,16 @@ import java.io.IOException;
 @PropertySource("classpath:application.yml")
 public class MemCachedConfig {
     @Value("${spring.data.memcached.servers}")
-    String host;
+    private String host;
 
     @Value("${spring.data.memcached.username}")
-    String username;
+    private String username;
 
     @Value("${spring.data.memcached.password}")
-    String password;
+    private String password;
 
     @Bean
-    MemcachedClient mc() {
+    public MemcachedClient mc() {
         AuthDescriptor ad = new AuthDescriptor(new String[]{"PLAIN"},
                 new PlainCallbackHandler(username, password));
 

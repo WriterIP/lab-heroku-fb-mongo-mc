@@ -1,4 +1,4 @@
-package ua.kpi.ip;
+package ua.kpi.ip.persistance.model;
 
 import org.springframework.data.annotation.Id;
 
