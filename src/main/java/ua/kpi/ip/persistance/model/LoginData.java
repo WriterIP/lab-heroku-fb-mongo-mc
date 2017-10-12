@@ -1,6 +1,8 @@
 package ua.kpi.ip.persistance.model;
 
-public class LoginData {
+import java.io.Serializable;
+
+public class LoginData implements Serializable{
 
     private String date;
     private String name;

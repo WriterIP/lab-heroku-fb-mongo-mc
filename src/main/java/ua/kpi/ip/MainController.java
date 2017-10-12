@@ -56,6 +56,7 @@ public class MainController {
         model.addAttribute("last_date", lastIn != null ? lastIn.getDate() : " n/a ");
         model.addAttribute("last_client", lastIn != null ? lastIn.getName() : " n/a ");
 
+        //якщо замість сет здобити add буде час першого входу за останню добу
         mc.set(h.getFbId(), EXP_INTERVAL,new LoginData( new Date().toString(),request.getRemoteAddr()));
 
         return "info";
