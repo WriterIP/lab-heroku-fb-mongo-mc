@@ -8,8 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import ua.kpi.ip.persistance.model.Human;
 import ua.kpi.ip.persistance.HumanRepository;
+import ua.kpi.ip.persistance.model.Human;
+import ua.kpi.ip.persistance.model.LoginData;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
@@ -49,11 +50,13 @@ public class MainController {
         } else
             System.out.println("already in DB");
 
-        model.addAttribute("last_date",mc.get(h.getFbId()+"_dt"));
-        model.addAttribute("last_client",mc.get(h.getFbId()+"_ip"));
 
-        mc.set(h.getFbId()+"_dt", 3600, new Date().toString());
-        mc.set(h.getFbId()+"_ip", 3600, request.getRemoteAddr());
+        LoginData lastIn = (mc.get(h.getFbId()) != null) ? (LoginData) mc.get(h.getFbId()) : null;
+
+        model.addAttribute("last_date", lastIn != null ? lastIn.getDate() : " n/a ");
+        model.addAttribute("last_client", lastIn != null ? lastIn.getName() : " n/a ");
+
+        mc.set(h.getFbId(), EXP_INTERVAL,new LoginData( new Date().toString(),request.getRemoteAddr()));
 
         return "info";
     }

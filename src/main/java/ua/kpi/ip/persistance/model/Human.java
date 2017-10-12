@@ -2,6 +2,9 @@ package ua.kpi.ip.persistance.model;
 
 import org.springframework.data.annotation.Id;
 
+/**
+ * with lombok it would look better, but let's keep build simple
+ */
 public class Human {
 
     @Id

@@ -5,6 +5,9 @@ import java.util.List;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import ua.kpi.ip.persistance.model.Human;
 
+/**
+ * Put all those filthy humans to mongo!
+ */
 public interface HumanRepository extends MongoRepository<Human, String> {
 
     public Human findByFbId(String fbId);
